@@ -5,7 +5,7 @@ plt.rcParams.update({'font.size': 14})
 
 def create_edgeworth_plot(w1bar = 1, w2bar = 1):
 
-    fig = plt.figure(frameon=False,figsize=(6,6), dpi=100)
+    fig = plt.figure(frameon=False,figsize=(7,7), dpi=100)
 
     ax_A = fig.add_subplot(1, 1, 1)
     ax_A.set_xlabel("$x_1^A$")

@@ -66,7 +66,7 @@ class ExchangeEconomyClass:
     def find_market_clearing(self):
 
         # 1. Defining p1 - you can adjust the price list to be more detailed
-        detail_level = 500
+        detail_level = 75
         p1 = [(0.5 + 2*i/detail_level) for i in range(detail_level + 1)]
 
         # 2. Calculate the errors
@@ -75,14 +75,13 @@ class ExchangeEconomyClass:
         eps2 = [x[1] for x in errors]
 
         # 3. Finding the index of the value that is closest to zero in the eps1 list
-        index_closest_to_zero = np.abs(eps1).argmin()
+        index_closest_to_zero, closest_to_zero = min(enumerate(eps1), key=lambda x: abs(x[1]))
 
         # 4. Getting the price where eps1 is closest to zero - the market clearing price
         price = p1[index_closest_to_zero]
 
-        # 5. Getting the market clearing demand for both consumers
+        # 5. Getting the market clearing demand for consumer A
         (x1A, x2A) = self.demand_A(price)
-        (x1B, x2B) = self.demand_B(price)
 
-        return (price, x1A, x2A, x1B, x2B)
+        return (price, x1A, x2A)
 
