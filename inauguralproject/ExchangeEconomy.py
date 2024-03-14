@@ -82,7 +82,7 @@ class ExchangeEconomyClass:
 
         # 5. Getting the market clearing demand for both consumers
         (x1A, x2A) = self.demand_A(price)
-        (x1B, x2B) = self.demand_A(price)
+        (x1B, x2B) = self.demand_B(price)
 
         return (price, x1A, x2A, x1B, x2B)
 
