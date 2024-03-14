@@ -1,9 +1,9 @@
-# \[Group name\]
+# \***hub]
 
 **Group members:**
-- A
-- B
-- C
+- Victor Valentin Kristensen
+- Bertil Spring
+- Nikoline Katinka Laursen
 
 This repository contains  
 1. Inaugural project. 
