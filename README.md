@@ -1,4 +1,4 @@
-# \***hub]
+# ***hub (Bertil-Nikoline-Victor)
 
 **Group members:**
 - Victor Valentin Kristensen
