@@ -127,3 +127,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+
+
+# Do not include the pdf of the assignment in the dataproject
+
+/dataproject/DataProject.pdf
