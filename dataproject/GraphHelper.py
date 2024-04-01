@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 def pretty_line_plot_US(data, title, xlabel, ylabel):
     
     # Creating a seaborn plot
-    plt.figure(figsize=(12, 6))
+    plt.figure(figsize=(8, 4))
     sns.lineplot(data=data, linewidth=2, marker='o', markersize=5)
 
     # Adding title and labels
@@ -24,7 +24,7 @@ def pretty_line_plot_US(data, title, xlabel, ylabel):
 def pretty_line_plot_DK(data, title, xlabel, ylabel, xName, yName):
     
     # Creating a seaborn plot
-    plt.figure(figsize=(12, 6))
+    plt.figure(figsize=(8, 4))
     sns.lineplot(data=data, x=xName, y=yName, color='skyblue', linewidth=2, marker='o', markersize=5)
 
     # Adding title and labels
