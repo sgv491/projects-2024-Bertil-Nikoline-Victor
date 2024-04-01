@@ -43,37 +43,36 @@ def plot_philips_curve_static(data, xName, yName, title):
     sns.set_style("whitegrid")
     sns.set_context("notebook", font_scale=1.2)
 
+    # Filter out NaN rows - or else the plot wont work
+    data_without_NaN = data.dropna(subset=[xName, yName], how='any')
+
     # Scatter plot
-    sns.scatterplot(data=data, x=xName, y=yName, color='gray', alpha=0.7, label='Data')
+    sns.scatterplot(data=data_without_NaN, x=xName, y=yName, color='gray', alpha=0.7, label='Data')
 
     # Tendency line - Exponential
-    (xValues, yValues) = calculate_exponential_fit(data[xName], data[yName])
+    (xValues, yValues) = calculate_exponential_fit(data_without_NaN[xName], data_without_NaN[yName])
 
     # Plot exponential curve
     plt.plot(xValues, yValues, color='red', linewidth=2, linestyle='dashed', label='Exponential Regression')
-
 
     # Adjust tick font size
     plt.xticks(fontsize=10)  # Increase tick label font size
     plt.yticks(fontsize=10)  # Increase tick label font size
 
-
+    # Some more styling
     plt.grid(True, linestyle='--', alpha=0.7)  # Add gridlines with dashed style and reduced opacity
     plt.legend(loc='upper right', fontsize=10)  # Add a legend with increased font size
     plt.tight_layout()  # Adjust plot layout for better presentation
 
 
     # Set limits on the x and y axes
-    #plt.xlim(2, 7)  # Set x-axis limits
-    plt.ylim(2, 7)  # Set y-axis limits
+    # plt.xlim(2, 7)  # Set x-axis limits
+    # plt.ylim(2, 7)  # Set y-axis limits
 
     # Add title and labels
     plt.title(title, fontsize=14)
     plt.xlabel('Unemployment rate (pct.)', fontsize=11)
     plt.ylabel('Inflation rate (pct.)', fontsize=11)
-
-    # Add legend
-    plt.legend()
 
     # Change legend font size
     plt.legend(fontsize=12)
