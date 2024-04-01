@@ -108,21 +108,65 @@ def unemployment_annual_DK(startDate = datetime.datetime(1900,1,1), endDate = da
 
 
 
+######################
+#     Japan Data     #
+######################
+
+def inflation_annual_JPN(startDate = datetime.datetime(1900,1,1), endDate = datetime.datetime(2024,1,1)):
+
+    # Getting the data from the API
+    inflation = pandas_datareader.data.DataReader('FPCPITOTLZGJPN', 'fred', startDate, endDate)
+
+    # Extract the year from the index and assign it back
+    inflation.index = inflation.index.year
+
+    # Rename the index to 'Year' and reset the index to make it a column
+    inflation = inflation.rename_axis('Year').reset_index()
+
+    # Rename column
+    inflation = inflation.rename(columns={'FPCPITOTLZGJPN': 'Inflation_JPN'})
+
+    return inflation
+
+def unemployment_annual_JPN(startDate = datetime.datetime(1900,1,1), endDate = datetime.datetime(2024,1,1)):
+    
+    # Getting the data from the API
+    unemployment_monthly = pandas_datareader.data.DataReader('LRHUTTTTJPA156S', 'fred', startDate, endDate)
+
+    # Resample the data to annual frequency
+    unemployment_annual = unemployment_monthly.resample('AS', convention='start').asfreq()
+
+    # Extract the year from the index and assign it back
+    unemployment_annual.index = unemployment_annual.index.year
+
+    # Rename the index to 'Year' and reset the index to make it a column
+    unemployment_annual = unemployment_annual.rename_axis('Year').reset_index()
+
+    # Rename column
+    unemployment_annual = unemployment_annual.rename(columns={'LRHUTTTTJPA156S': 'Unemployment_JPN'})
+
+    return unemployment_annual
+
+
+
+
 ###########################
 #     Merged Datasets     #
 ###########################
 
 def merged_data():
 
-    # Outer merge all of the four data sources
-    merged_US_data = pd.merge(inflation_annual_US(), unemployment_annual_US(), on='Year', how='outer')
-    merged_DK_inflation = pd.merge(merged_US_data, inflation_annual_DK(), on='Year', how='outer')
-    final_merged_df = pd.merge(merged_DK_inflation, unemployment_annual_DK(), on='Year', how='outer')
+    # Outer merge all of the six (3 countries x 2 data series) data sources
+    data = pd.merge(inflation_annual_US(), unemployment_annual_US(), on='Year', how='outer')
+    data = pd.merge(data, inflation_annual_DK(), on='Year', how='outer')
+    data = pd.merge(data, unemployment_annual_DK(), on='Year', how='outer')
+    data = pd.merge(data, inflation_annual_JPN(), on='Year', how='outer')
+    data = pd.merge(data, unemployment_annual_JPN(), on='Year', how='outer')
 
     # Filter data for years before 1960 since most data is missing
-    final_merged_df = final_merged_df[final_merged_df['Year'] > 1959]
+    data = data[data['Year'] > 1959]
 
     # Filter data for years after 2022 since most data is missing
-    final_merged_df = final_merged_df[final_merged_df['Year'] <= 2022]
+    data = data[data['Year'] <= 2022]
 
-    return final_merged_df
+    return data
