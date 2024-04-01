@@ -11,13 +11,13 @@ import matplotlib.pyplot as plt
 def line_plot_with_labels(data, title, xlabel, ylabel, xName, yName, color="orange"):
     
     # Creating a seaborn plot
-    plt.figure(figsize=(6, 3))
-    sns.lineplot(data=data, x=xName, y=yName, linewidth=2, color=color, marker='o', markersize=5)
+    plt.figure(figsize=(6, 4))
+    sns.lineplot(data=data, x=xName, y=yName, linewidth=1.5, color=color, marker='o', markersize=5)
 
     # Adding title and labels
-    plt.title(title, fontsize=16)
-    plt.xlabel(xlabel, fontsize=12)
-    plt.ylabel(ylabel, fontsize=12)
+    plt.title(title, fontsize=14)
+    plt.xlabel(xlabel, fontsize=11)
+    plt.ylabel(ylabel, fontsize=11)
 
     # Adding grid and annotations
     plt.grid(True, linestyle='--', alpha=0.7)
