@@ -1,10 +1,15 @@
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-def pretty_line_plot_US(data, title, xlabel, ylabel):
+# Plot constants
+PLOT_HEIGHT = 3
+PLOT_WIDTH = 6
+
+
+def line_plot_without_labels(data, title, xlabel, ylabel):
     
     # Creating a seaborn plot
-    plt.figure(figsize=(8, 4))
+    plt.figure(figsize=(PLOT_WIDTH, PLOT_HEIGHT))
     sns.lineplot(data=data, linewidth=2, marker='o', markersize=5)
 
     # Adding title and labels
@@ -21,11 +26,11 @@ def pretty_line_plot_US(data, title, xlabel, ylabel):
 
     return plt
 
-def pretty_line_plot_DK(data, title, xlabel, ylabel, xName, yName):
+def line_plot_with_labels(data, title, xlabel, ylabel, xName, yName):
     
     # Creating a seaborn plot
-    plt.figure(figsize=(8, 4))
-    sns.lineplot(data=data, x=xName, y=yName, color='skyblue', linewidth=2, marker='o', markersize=5)
+    plt.figure(figsize=(PLOT_WIDTH, PLOT_HEIGHT))
+    sns.lineplot(data=data, x=xName, y=yName, linewidth=2, marker='o', markersize=5)
 
     # Adding title and labels
     plt.title(title, fontsize=16)
