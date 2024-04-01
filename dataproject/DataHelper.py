@@ -120,7 +120,7 @@ def merged_data():
     final_merged_df = pd.merge(merged_DK_inflation, unemployment_annual_DK(), on='Year', how='outer')
 
     # Filter data for years before 1960 since most data is missing
-    final_merged_df = final_merged_df[final_merged_df['Year'] > 1960]
+    final_merged_df = final_merged_df[final_merged_df['Year'] > 1959]
 
     # Filter data for years after 2022 since most data is missing
     final_merged_df = final_merged_df[final_merged_df['Year'] <= 2022]
