@@ -89,8 +89,17 @@ def plot_philips_curve_static(data, xName, yName, title):
 from scipy.optimize import curve_fit
 import numpy as np
 
-def calculate_exponential_fit(x, y):
+def calculate_exponential_fit(x: list, y: list):
+    """
+    Calculates an expontial fit from a series of x and y values.
 
+    Parameters:
+    x (list): A list of x values
+    y (list): A list of y values
+
+    Returns:
+    type: Returns two lists of the calculated exponential fit based on the parameters with x and y values.
+    """
     # Define an exponential function
     def exponential_func(x, a, b):
         return a * np.exp(b * x)

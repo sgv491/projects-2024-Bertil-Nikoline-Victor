@@ -23,3 +23,12 @@ Strukturen vil være som følger:
 4) Udvide disse illustrationer for flere årtier frem i tiden
 5) Generere et interaktivt plot (widget) for USA, hvor man kan vælge rullende årtier, hvorfra den empiriske Philips-kurve illustreres
 6) Sammenligningsplot mellem USA og DK's empiriske Philips-kurve i et bestemt årti (evt. som widget med flere årtier, hvis muligt)
+
+
+Tilføjelser:
+1) Delkonklusioner
+2) Spørgende opgave - stil spørgsmål og besvar åbent løbende
+3) Konklusion der ikke er for konkluderende men mere opsummerende over hvad vi har set
+4) Tilføj doc-strings for helper filer
+5) bertils samlede graf skal med ind
+6) Nedslag i perioder, både kort beskrevet, og 3 grafer man går mere ned i
