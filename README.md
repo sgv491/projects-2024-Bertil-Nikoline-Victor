@@ -1,9 +1,9 @@
 # ***hub (Bertil-Nikoline-Victor)
 
 **Group members:**
-- Victor Valentin Kristensen
-- Bertil Spring
-- Nikoline Katinka Laursen
+- Victor Valentin Kristensen (gcp458)
+- Bertil Spring (fpg798)
+- Nikoline Katinka Laursen (mxh836)
 
 This repository contains  
 1. Inaugural project. 
