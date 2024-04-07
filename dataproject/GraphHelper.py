@@ -9,7 +9,21 @@ import matplotlib.pyplot as plt
 
 
 def line_plot_with_labels(data, title, xlabel, ylabel, xName, yName, color="orange"):
-    
+    """
+    Creates a line plot with specified labels and attributes.
+
+    Parameters:
+    data (DataFrame): A pandas DataFrame containing the data.
+    title (str): The title of the plot.
+    xlabel (str): The label for the x-axis.
+    ylabel (str): The label for the y-axis.
+    xName (str): The name of the column representing the x-axis data.
+    yName (str): The name of the column representing the y-axis data.
+    color (str, optional): The color of the line plot. Defaults to "orange".
+
+    Returns:
+    matplotlib.pyplot.figure: A matplotlib figure object containing the plot.
+    """    
     # Creating a seaborn plot
     plt.figure(figsize=(6, 4))
     sns.lineplot(data=data, x=xName, y=yName, linewidth=1.5, color=color, marker='o', markersize=5)
@@ -35,7 +49,26 @@ def line_plot_with_labels(data, title, xlabel, ylabel, xName, yName, color="oran
 ##########################
 
 def plot_philips_curve_static(data, xName, yName, title):
+    """
+    Plots Phillips curve with static attributes.
 
+    Parameters:
+    data (DataFrame): A pandas DataFrame containing the data.
+    xName (str): The name of the column representing the x-axis data.
+    yName (str): The name of the column representing the y-axis data.
+    title (str): The title of the plot.
+
+    Returns:
+    matplotlib.pyplot.figure: A matplotlib figure object containing the plot.
+
+    Notes:
+    The function internally calls calculate_exponential_fit to determine the x and y values
+    for the exponential regression line.
+
+    calculate_exponential_fit returns two lists, xValues and yValues, which represent the x and y
+    values respectively for the exponential regression line. These values are used for plotting
+    the tendency line.
+    """
     # Create scatter plot with tendency line
     plt.figure(figsize=(5, 5))  # Set figure size
 

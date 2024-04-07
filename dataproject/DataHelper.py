@@ -13,7 +13,16 @@ import pandas_datareader
 #####################
 
 def inflation_annual_US(startDate = datetime.datetime(1900,1,1), endDate = datetime.datetime(2024,1,1)):
+    """
+    Retrieves annual inflation data for the United States within a specified date range.
 
+    Parameters:
+    startDate (datetime.datetime, optional): The start date for the inflation data retrieval. Defaults to January 1, 1900.
+    endDate (datetime.datetime, optional): The end date for the inflation data retrieval. Defaults to January 1, 2024.
+
+    Returns:
+    pandas.DataFrame: A DataFrame containing annual inflation data for the United States.
+    """
     # Getting the data from the API
     inflation = pandas_datareader.data.DataReader('FPCPITOTLZGUSA', 'fred', startDate, endDate)
 
@@ -29,7 +38,16 @@ def inflation_annual_US(startDate = datetime.datetime(1900,1,1), endDate = datet
     return inflation
 
 def unemployment_annual_US(startDate = datetime.datetime(1900,1,1), endDate = datetime.datetime(2024,1,1)):
-    
+    """
+    Retrieves annual unemployment rate data for the United States.
+
+    Parameters:
+    startDate (datetime.datetime, optional): Start date for data retrieval. Defaults to January 1, 1900.
+    endDate (datetime.datetime, optional): End date for data retrieval. Defaults to January 1, 2024.
+
+    Returns:
+    pandas.DataFrame: A DataFrame containing annual unemployment rate data for the United States.
+    """    
     # Getting the data from the API
     unemployment_monthly = pandas_datareader.data.DataReader('UNRATE', 'fred', startDate, endDate)
 
@@ -62,7 +80,14 @@ import pandas as pd
 
 
 def inflation_annual_DK():
+    """
+    Fetches annual inflation data for Denmark.
 
+    Returns:
+    DataFrame: A pandas DataFrame containing annual inflation data for Denmark.
+               The DataFrame has columns 'Year' and 'Inflation_DK' representing the year and
+               corresponding inflation rate respectively.
+    """
     # Initializing DstApi object
     inflation_dk = DstApi('PRIS9')
 
@@ -89,6 +114,16 @@ def inflation_annual_DK():
 
 
 def unemployment_annual_DK(startDate = datetime.datetime(1900,1,1), endDate = datetime.datetime(2024,1,1)):
+    """
+    Retrieves annual unemployment data for Denmark from FRED database.
+
+    Parameters:
+    startDate (datetime.datetime, optional): Start date of the data retrieval period. Defaults to January 1, 1900.
+    endDate (datetime.datetime, optional): End date of the data retrieval period. Defaults to January 1, 2024.
+
+    Returns:
+    pandas.DataFrame: DataFrame containing annual unemployment data for Denmark with columns 'Year' and 'Unemployment_DK'.
+    """
     # Getting unemployment data from FRED instead of DST because FRED has a longer timeseries
     # Note that there is missing data from 1965 until 1969 in the dataset
 
@@ -113,7 +148,16 @@ def unemployment_annual_DK(startDate = datetime.datetime(1900,1,1), endDate = da
 ######################
 
 def inflation_annual_JPN(startDate = datetime.datetime(1900,1,1), endDate = datetime.datetime(2024,1,1)):
+    """
+    Retrieves annual inflation data for Japan from a specified start date to end date.
 
+    Parameters:
+    startDate (datetime.datetime, optional): Start date for retrieving data. Defaults to January 1, 1900.
+    endDate (datetime.datetime, optional): End date for retrieving data. Defaults to January 1, 2024.
+
+    Returns:
+    pandas.DataFrame: A DataFrame containing annual inflation data for Japan with columns 'Year' and 'Inflation_JPN'.
+    """
     # Getting the data from the API
     inflation = pandas_datareader.data.DataReader('FPCPITOTLZGJPN', 'fred', startDate, endDate)
 
@@ -129,7 +173,16 @@ def inflation_annual_JPN(startDate = datetime.datetime(1900,1,1), endDate = date
     return inflation
 
 def unemployment_annual_JPN(startDate = datetime.datetime(1900,1,1), endDate = datetime.datetime(2024,1,1)):
-    
+    """
+    Retrieves annual unemployment data for Japan.
+
+    Parameters:
+    startDate (datetime.datetime, optional): The start date for fetching the data. Defaults to January 1, 1900.
+    endDate (datetime.datetime, optional): The end date for fetching the data. Defaults to January 1, 2024.
+
+    Returns:
+    pandas.DataFrame: A DataFrame containing annual unemployment data for Japan.
+    """    
     # Getting the data from the API
     unemployment_monthly = pandas_datareader.data.DataReader('LRHUTTTTJPA156S', 'fred', startDate, endDate)
 
@@ -155,7 +208,17 @@ def unemployment_annual_JPN(startDate = datetime.datetime(1900,1,1), endDate = d
 ###########################
 
 def merged_data():
+    """
+    Merges multiple data sources containing inflation and unemployment rates for different countries.
 
+    Returns:
+    DataFrame: A pandas DataFrame containing merged data from multiple sources.
+
+    Note:
+    This function merges six different data sources for three countries (US, DK, JPN) with two data series 
+    (inflation and unemployment rates) based on the 'Year' column using an outer merge. It then filters the 
+    merged data to include only years between 1960 and 2022.
+    """
     # Outer merge all of the six (3 countries x 2 data series) data sources
     data = pd.merge(inflation_annual_US(), unemployment_annual_US(), on='Year', how='outer')
     data = pd.merge(data, inflation_annual_DK(), on='Year', how='outer')
