@@ -29,6 +29,6 @@ Tilføjelser:
 1) Delkonklusioner
 2) Spørgende opgave - stil spørgsmål og besvar åbent løbende
 3) Konklusion der ikke er for konkluderende men mere opsummerende over hvad vi har set
-4) Tilføj doc-strings for helper filer
-5) bertils samlede graf skal med ind
+4) Tilføj doc-strings for helper filer - Tjek
+5) bertils samlede graf skal med ind - Tjek
 6) Nedslag i perioder, både kort beskrevet, og 3 grafer man går mere ned i
