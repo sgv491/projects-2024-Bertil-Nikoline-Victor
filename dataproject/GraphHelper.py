@@ -43,6 +43,52 @@ def line_plot_with_labels(data, title, xlabel, ylabel, xName, yName, color="oran
     return plt
 
 
+####################
+#     Box Plot     #
+####################
+
+def plot_boxplots(data, column_name1, column_name2):
+    """
+    Creates a box plot with two time series.
+
+    Parameters:
+    data (DataFrame): A pandas DataFrame containing the data.
+    column_name1 (str): The name of the column representing the x-axis data.
+    column_name2 (str): The name of the column representing the y-axis data.
+
+    Returns:
+    An interactive plot with two box plots over two different time-series.
+    """
+
+    # Creating subplots and setting figsize
+    fig, axes = plt.subplots(1, 2, figsize=(6, 4))
+
+    # Boxplot design commands
+    boxplot_params = dict(
+        boxprops=dict(color='red', linewidth=3),
+        whiskerprops=dict(color='black', linewidth=2),
+        capprops=dict(color='black', linewidth=2),
+        medianprops=dict(color='black', linewidth=2,linestyle='--'),
+        flierprops=dict(marker='o', markersize=4, markerfacecolor='red', markeredgecolor='black')
+    )
+    # First boxplot w. specified design and y-/x-axis
+    axes[0].boxplot(data[column_name1].dropna(),**boxplot_params)
+    axes[0].set_title(f'{column_name1}')
+    axes[0].set_ylabel('%')
+    axes[0].set_ylim(-5,20)
+    axes[0].set_xticklabels([])
+
+    # Second boxplot w. specified design and y-/x-axis
+    axes[1].boxplot(data[column_name2].dropna(), **boxplot_params)
+    axes[1].set_title(f'{column_name2}')
+    axes[1].set_ylabel('%')
+    axes[1].set_ylim(-5,20)
+    axes[1].yaxis.set_ticks_position('right')
+    axes[1].yaxis.set_label_position('right')
+    axes[1].set_xticklabels([])
+
+    plt.show()
+
 
 ##########################
 #     Phillips Curve     #
@@ -96,11 +142,6 @@ def plot_philips_curve_static(data, xName, yName, title):
     plt.grid(True, linestyle='--', alpha=0.7)  # Add gridlines with dashed style and reduced opacity
     plt.legend(loc='upper right', fontsize=10)  # Add a legend with increased font size
     plt.tight_layout()  # Adjust plot layout for better presentation
-
-
-    # Set limits on the x and y axes
-    # plt.xlim(2, 7)  # Set x-axis limits
-    # plt.ylim(2, 7)  # Set y-axis limits
 
     # Add title and labels
     plt.title(title, fontsize=14)
