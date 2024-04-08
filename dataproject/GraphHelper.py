@@ -94,15 +94,17 @@ def plot_boxplots(data, column_name1, column_name2):
 #     Phillips Curve     #
 ##########################
 
-def plot_philips_curve_static(data, xName, yName, title):
+def plot_philips_curve_static(data, column_names, title, country_names, width = 5, height = 5):
     """
     Plots Phillips curve with static attributes.
 
     Parameters:
     data (DataFrame): A pandas DataFrame containing the data.
-    xName (str): The name of the column representing the x-axis data.
-    yName (str): The name of the column representing the y-axis data.
+    column_names a list of tuples: A list of tuples that contains the x and y column names, so it's possible to plot multiple series.
     title (str): The title of the plot.
+    country_names list of (str): A list of country names corresponding to the column_names.
+    width (number): Height of the plot.
+    height (number): Width of the plot.
 
     Returns:
     matplotlib.pyplot.figure: A matplotlib figure object containing the plot.
@@ -116,23 +118,44 @@ def plot_philips_curve_static(data, xName, yName, title):
     the tendency line.
     """
     # Create scatter plot with tendency line
-    plt.figure(figsize=(5, 5))  # Set figure size
+    plt.figure(figsize=(width, height))  # Set figure size
 
     # Set Seaborn style and context
     sns.set_style("whitegrid")
     sns.set_context("notebook", font_scale=1.2)
 
-    # Filter out NaN rows - or else the plot wont work
-    data_without_NaN = data.dropna(subset=[xName, yName], how='any')
+    for index, x_and_y_column in enumerate(column_names):
 
-    # Scatter plot
-    sns.scatterplot(data=data_without_NaN, x=xName, y=yName, color='gray', alpha=0.7, label='Data')
+        # Column names
+        (xName, yName) = x_and_y_column
 
-    # Tendency line - Exponential
-    (xValues, yValues) = calculate_exponential_fit(data_without_NaN[xName], data_without_NaN[yName])
+        # Filter out NaN rows - or else the plot wont work
+        data_without_NaN = data.dropna(subset=[xName, yName], how='any')
 
-    # Plot exponential curve
-    plt.plot(xValues, yValues, color='red', linewidth=2, linestyle='dashed', label='Exponential Regression')
+        # Colors for the graph
+        graph_colors = [
+            'blue',
+            'green',
+            'red',
+            'cyan',
+            'magenta',
+            'yellow',
+            'black'
+        ]
+
+        # Scatter plot
+        sns.scatterplot(data=data_without_NaN, x=xName, y=yName, color=graph_colors[index], alpha=0.4, label=f"Data {country_names[index]}")
+
+        # Tendency line - Exponential
+        (xValues, yValues) = calculate_exponential_fit(data_without_NaN[xName], data_without_NaN[yName])
+
+        xName.replace('_', ' ')
+
+        yName.replace('_', ' ')
+
+        # Plot exponential curve
+        plt.plot(xValues, yValues, color=graph_colors[index], linewidth=2, linestyle='dashed', label=f"Exponential {country_names[index]}")
+
 
     # Adjust tick font size
     plt.xticks(fontsize=10)  # Increase tick label font size
