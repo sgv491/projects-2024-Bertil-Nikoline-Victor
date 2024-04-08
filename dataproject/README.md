@@ -31,4 +31,4 @@ Tilføjelser:
 3) Konklusion der ikke er for konkluderende men mere opsummerende over hvad vi har set
 4) Tilføj doc-strings for helper filer - Tjek
 5) bertils samlede graf skal med ind - Tjek
-6) Nedslag i perioder, både kort beskrevet, og 3 grafer man går mere ned i
+6) Beskriv de deskriptive data (det gør Bertil)
