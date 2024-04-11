@@ -1,34 +1,26 @@
-# Data analysis project
+# Data analysis project(Assignment 2)
+This project is the second assignment completed by the group consisting of Victor V. Kristensen (gcp458), Nikoline K. L. Laursen (mxh836), Bertil D. H. Spring (fpg798) in the course **Introduction to Programming and Numerical Analysis** at the University of Copenhagen in Spring 2024.
 
-Our project is titled **PROJECT TITLE** and is about EXPLAIN.
+## The purpose of the project
+The project investigates the applicability of the Phillips curve theory across three distinct countries. It examines the data for each country individually, analyzing the curves within the context of each nation and over time.
 
-The **results** of the project can be seen from running [dataproject.ipynb](dataproject.ipynb).
+## Files in the project
+The project consists of a Jyputer-notebook file (InauguralProject2024.ipynb) and two python-files: ExchangeEconomy.py and GraphHelper.py.
+* The **dataproject.ipynb** file provides an overview with the results of the exploration of the datasets and the theoretical analysis supported by graphs.
+* The **Datahelper.py** file contains a wrapper for multiple APIs with a pandas interface and a help tool to merg the datasets.
+* The **GraphHelper.py** file contains a helper function to create the Phillips-Curve, a Box-Plot, a Times Series Plot, and an Exponential fit to use for the Phillips-Curves.
 
-We apply the **following datasets**:
+## To run the project
+* The project has been tested using Python 3.11.7.
 
-1. dataX.csv (*source*) 
-1. dataY.csv (*source*)
+## We apply the following datasets:
+*'FPCPITOTLZGUSA' (FRED)
+*'UNRATE'(FRED)
+*'PRIS9'(DSTAPI)
+*'LRUN74TTDKA156S'(FRED)
+*'FPCPITOTLZGJPN'(FRED)
+*'LRHUTTTTJPA156S'(FRED)
 
-**Dependencies:** Apart from a standard Anaconda Python 3 installation, the project requires the following installations:
+## **Dependencies:** Apart from a standard Anaconda Python 3 installation, the project requires the following installations:
+DstAPi: %pip install git+https://github.com/alemartinello/dstapi
 
-``pip install matplotlib-venn``
-
-# Idéer til projektstruktur
-Mål: Målet med projektet er at vise, hvordan sammenhængen mellem inflation og arbejdsløshed har udviklet sig over tid i USA og Danmark og sammenligne denne sammenhæng med Philips-kurvens teoretiske sammenhæng. I projektet vil vi bruge data fra FRED (St. Louis Fed) og Danmarks Statistik, som vil importeres vha. API'er.
-
-Strukturen vil være som følger:
-1) Benytte API'er til at importere data fra FRED og Danmarks Statistik og rense denne til at vise årlig inflation og årlig arbejdsløshed (gns. af 12 måneder)
-2) Illustrere udviklingen i inflation og arbejdsløshed over tid i de to lande.
-3) Illustrere den empiriske Philips-kurve for USA startende i 1960'erne inkl. regressionskurve-fit (eksponentiel aftagende)
-4) Udvide disse illustrationer for flere årtier frem i tiden
-5) Generere et interaktivt plot (widget) for USA, hvor man kan vælge rullende årtier, hvorfra den empiriske Philips-kurve illustreres
-6) Sammenligningsplot mellem USA og DK's empiriske Philips-kurve i et bestemt årti (evt. som widget med flere årtier, hvis muligt)
-
-
-Tilføjelser:
-1) Delkonklusioner
-2) Spørgende opgave - stil spørgsmål og besvar åbent løbende
-3) Konklusion der ikke er for konkluderende men mere opsummerende over hvad vi har set
-4) Tilføj doc-strings for helper filer - Tjek
-5) bertils samlede graf skal med ind - Tjek
-6) Beskriv de deskriptive data (det gør Bertil)
